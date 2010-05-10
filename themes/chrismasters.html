@@ -21,7 +21,7 @@
 	<meta name="description" content="{MetaDescription}" />
 	{/block:Description}
 	
-    <link rel="shortcut icon" href="{Favicon}" />
+    <link rel="icon" href="http://static.tumblr.com/pakkylg/7Xll20gam/favicon.ico" />
     <link rel="alternate" type="application/rss+xml" href="{RSS}" />
 
 	<style type="text/css">
@@ -110,7 +110,11 @@
 		text-indent: 35px;
 	}
 	
-
+	h3 {
+		font-size: 1.5em; /* 16x1.5em=24px */
+		line-height:1.25em; /* 16x1.5emx1.25em=30px */
+		margin-bottom:0.417em; /* 16x1.5emx0.417em=10px */
+	}
 	
 	p.date {
 		font-size: 0.875em; /* 16x0.875=14px */
@@ -118,7 +122,12 @@
 		color: #aaa;
 	}
 	
-	p.post-meta {
+	.copy {
+		margin-top: 0.625em;
+	}
+	
+	p.post-meta, .post-meta span {
+		color: #555;
 		font-size: 0.5em;
 		word-wrap: break-word; /* Internet Explorer 5.5+ */
 		white-space: normal; /* Firefox */
@@ -175,10 +184,6 @@
 		border: none;
 	}
 	
-	.copy {
-		/*margin-top: 5px;*/
-	}
-	
 	.red {
 	        background-color: #F00;
 	}
@@ -186,7 +191,7 @@
     #wrapper {
         width: 960px;
         margin: 0 auto;
-		background: #fff url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/16_col_10px.gif) repeat scroll 0 4px;
+		/*background: #fff url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/16_col_10px.gif) repeat scroll 0 4px;*/
     }
 
 	#content {
@@ -197,18 +202,12 @@
 		float:left;
 		width:160px;
 		padding:0 80px 0 10px;
-		/*background-color: #DDD;*/
 		text-align: right;
-		/*background-color: rgba(255,0,0,0.4);*/
 	}
 	
 	.photo, .video, .audio, .quote, .text, .link {
 		float:left;
 		width:400px;
-/*		margin:0 10px;
-		padding-bottom: 10px;*/
-		/*border-bottom: 1px solid #ddd;*/
-		/*background-color: #EEE;*/
 		padding-bottom: 1.125em;
 		border-bottom: 0.125em solid black;
 	}
@@ -217,9 +216,6 @@
 
 	}
 	
-	.playcount {
-	        /*visibility: hidden;*/
-	}
 	
 	.cover {
 		float: left;
@@ -319,6 +315,21 @@
                     balanceHeight(this);
                 }
             });
+
+			// FOR ADDING THE PLAYCOUNT TO SIDEINFO
+			$('.audio').each(function() {
+				var playContent = $(this).find('.playcount').html();
+				$(this).find('.playcount').hide();
+                /* Only works if we're manipulating block objects */
+                if ($(this).prev().children(".notecount").length != 0)
+                {
+                    $(this).prev().children(".notecount").children('a').before(playContent + ' / ');
+					$(this).find('.playcount').addClass("red");
+                } else
+				{
+					$(this).prev().children(".shortURL").after('<p class="notecount post-meta">' + playContent + '</p>');
+				}
+            });
         });
     </script>
 </head>
@@ -354,11 +365,11 @@
                 <div class="post clearfix">
 					<div class="sideInfo">
 						{block:Date}
-						<p class="date">{DayOfMonth}<sup>th</sup> {Month} {Year}</p>
+						<p class="date">{DayOfMonth}<sup>{DayOfMonthSuffix}</sup> {Month} {Year}</p>
 						{/block:Date}
-						<p class="shortURL post-meta"><a href="{shortURL}">{Permalink}</a></p>
+						<p class="shortURL post-meta"><a href="{shortURL}">{shortURL}</a></p>
 						{block:NoteCount}
-						<p class="notecount post-meta"><a href="{Permalink}"><strong>{NoteCountWithLabel}</strong></a></p>
+						<p class="notecount post-meta"><a href="{PostNotesURL}"><strong>{NoteCountWithLabel}</strong></a></p>
 						{/block:NoteCount}
 						{block:HasTags}
 						<ul class="tags clearfix">
@@ -389,39 +400,24 @@
                     
                     {block:Audio}                        
                         <div class="audio {TagsAsClasses}">
-			
-				<div class="audioInfo clearfix">
-				        <script type="text/javascript">
-				                
-				                
-				                $(".audio").prev().(".noteCount").prepend("<strong>{PlayCountWithLabel}</strong>");
-                                               // $(".audio").prev().children(".notecount").before('<strong>yeah</strong> / ');
-                                               // alert(hasNotes);
-                                               //                                              if ($(hasNotes).length != 0)
-                                               //                                                      {
-                                               //                                                          $(hasNotes).after("<strong>WOAH</strong>");
-                                               //                                                      }
-                                               //                                                      else
-                                               //                                                      {
-                                               //                                                          $(hasNotes).parent().addClass("red");
-                                               //                                                      }
-                                             
 
-                                        </script>
+				<div class="audioInfo clearfix">
+				       
 				        <div class="cover">
         				        {block:AlbumArt}
                                                 <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" width="160" height="160"/>
                                                 {/block:AlbumArt}				            
 				        </div>
 
-					<div>
-					        {block:TrackName}<h2>{TrackName}</h2>{/block:TrackName}
+						<div>
+					        {block:TrackName}<h3>{TrackName}</h3>{/block:TrackName}
                 				{block:Artist}<p>by {Artist}</p>{/block:Artist}
                 				{block:Album}<p>from the album {Album}</p>{/block:Album}
-                				{AudioPlayerWhite}
-					</div>		
+                				<span class="post-meta">{AudioPlayerWhite}</span>
+								<p class="playcount post-meta"><strong>{PlayCountWithLabel}</strong></p>
+							</div>		
         				
-	                        </div>
+	            </div>
 				{block:Caption}
 				<div class="copy">{Caption}</div>
 				{/block:Caption}

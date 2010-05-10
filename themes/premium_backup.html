@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=0.4" />
+        <meta name="tumblr-theme" content="8949" />
+
+	<title>{Title}{block:PostSummary} &bull; {PostSummary}{/block:PostSummary}</title>
+
+	<meta name="author" content="Matthew Buchanan" />
+	<meta name="description" content="{MetaDescription}" />
+	<meta name="if:Show trees in header" content="1" />
+	<meta name="image:Header title" content="" />
+	<meta name="if:Show short URLs" content="1" />
+	<meta name="if:Show social links" content="0" />
+	<meta name="text:Social panel title" content="Social" />
+	<meta name="text:Social name 1" content="" />
+	<meta name="text:Social link 1" content="" />
+	<meta name="text:Social name 2" content="" />
+	<meta name="text:Social link 2" content="" />
+	<meta name="text:Social name 3" content="" />
+	<meta name="text:Social link 3" content="" />
+	<meta name="text:Social name 4" content="" />
+	<meta name="text:Social link 4" content="" />
+	<meta name="text:Social name 5" content="" />
+	<meta name="text:Social link 5" content="" />
+	<meta name="text:Social name 6" content="" />
+	<meta name="text:Social link 6" content="" />
+	<meta name="if:Show blogs I follow" content="0" />
+	<meta name="text:Following panel title" content="Superstars" />
+	<meta name="if:Show favorite albums" content="0" />
+	<meta name="text:Albums panel title" content="Sounds" />
+	<meta name="image:Album 1" content="" />
+	<meta name="image:Album 2" content="" />
+	<meta name="image:Album 3" content="" />
+	<meta name="image:Album 4" content="" />
+	<meta name="text:Album name 1" content="" />
+	<meta name="text:Album link 1" content="" />
+	<meta name="text:Album name 2" content="" />
+	<meta name="text:Album link 2" content="" />
+	<meta name="text:Album name 3" content="" />
+	<meta name="text:Album link 3" content="" />
+	<meta name="text:Album name 4" content="" />
+	<meta name="text:Album link 4" content="" />
+	<meta name="if:Show iPhone link" content="1" />
+	<meta name="text:Disqus shortname" content="" />
+	<meta name="text:Flickr numeric ID" content="" /> <!-- Use http://idgettr.com to find this -->
+	<meta name="text:Flickr panel title" content="Sights" />
+	<meta name="text:Flickr how many" content="4" />
+	<meta name="text:Google Analytics ID" content="" />
+
+	<link rel="icon" href="http://static.tumblr.com/pakkylg/7Xll20gam/favicon.ico" />
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{RSS}" />
+
+	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/gpln05e/aTGkzf9mg/reset-min.css" media="all" />  		 	
+	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/gpln05e/eRlkzp79e/screen.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/pakkylg/aRIl0d1yk/my_style.css" media="screen" />
+
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/gpln05e/jvWkzf9mu/screen-ie6.css" />
+	<![endif]-->
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/gpln05e/gIbkzf9n7/screen-ie7.css" />
+	<![endif]-->
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://static.tumblr.com/gpln05e/uqtkzf9ip/jqwidont-compressed.js"></script>
+	<script type="text/javascript" src="http://static.tumblr.com/gpln05e/OCOkzf9i1/jqbrowser-compressed.js"></script>
+	{block:IfFlickrNumericId}<script type="text/javascript" src="http://static.tumblr.com/gpln05e/q8gkzmnml/jflickrfeed.min.js"></script>{/block:IfFlickrNumericId}
+	<script type="text/javascript" src="http://static.tumblr.com/gpln05e/ua1kzphpl/national-park.js"></script>
+
+	<script type="text/javascript" src="http://static.tumblr.com/gpln05e/TGMkyw1xw/cufon-yui.js"></script>
+	<script type="text/javascript" src="http://static.tumblr.com/gpln05e/WnWkzgyn2/aller-400.font.js"></script>
+	<script type="text/javascript" src="http://static.tumblr.com/gpln05e/U0kkzh1vc/mirisch-400.font.js"></script>
+
+	<style type="text/css">
+	/* <![CDATA[ */
+		{block:IfShowTreesInHeader}#header { background: url("http://static.tumblr.com/gpln05e/acNkzgxlv/national-park-trees.png") no-repeat 0 0; }
+		#header h1 { padding: 80px 300px 0 0; }{/block:IfShowTreesInHeader}
+		{block:IfHeaderTitleImage}#header h1 { background: url("{image:Header Title}") no-repeat 0 0; text-indent: -999em; overflow: hidden; }{/block:IfHeaderTitleImage}
+		.notes-container li.tumblelog_{Name}, .notes-container li.radar { background-color: #FFF; margin: -1px -1em 0 -1em; padding: 0.75em 1em; border-top: 1px solid #D8D8DF; }
+		
+		{CustomCSS}
+	/* ]]> */
+	</style>
+	
+	{block:IndexPage}{block:IfFlickrNumericId}<script type="text/javascript">
+	// <![CDATA[
+		$(function() {
+			$('#flickrfeed').jflickrfeed({
+				limit: {text:Flickr how many},
+				qstrings: {
+					id: "{text:Flickr numeric ID}"
+				},
+				itemTemplate: '<li><span class="flickr-top"></span><span class="flickr-base"></span><a href="{{li'+'nk}}"><img src="{{image_s}}" alt="{{tit'+'le}}" /></a></li>'
+				}, function() {
+					$("#flickrfeed li:even").addClass("even");
+			});
+		});
+	// ]]>
+	</script>{/block:IfFlickrNumericId}{/block:IndexPage}
+</head>  		 	
+<body>
+        <!-- Tumblr Theme #8949 -->
+	<div id="page">
+		{block:HasPages}
+		<div id="pagenav" class="header">
+			<p>
+				{block:Pages}
+				<a href="{URL}">{Label}</a>
+				{/block:Pages}
+			</p>
+		</div>
+		{/block:HasPages}
+		<div id="header">			
+		</div>
+		<div id="main">
+			{block:TagPage}
+			<div class="pagetype">
+				<p class="tags syndicate"><span>Posts tagged with</span> <strong><a href="/tagged/{URLSafeTag}">{Tag}</a></strong> <a href="/tagged/{URLSafeTag}/rss" class="feed">RSS</a></p>
+			</div>
+			{/block:TagPage}
+			{block:DayPage}
+			<div class="pagetype">
+				<p class="date">Posts for <strong>{DayOfWeek}, {DayOfMonth} {Month} {Year}</strong></p>
+			</div>
+			{/block:DayPage}
+			{block:SearchPage}
+			<div class="pagetype" id="searchresults">
+				<p class="search syndicate">Located {SearchResultCount} matches for <strong>{SearchQuery}</strong> <a href="/search/{URLSafeSearchQuery}/rss" class="feed">RSS</a></p>
+			</div>
+			{/block:SearchPage}
+			{block:NoSearchResults}
+			<div class="pagetype">
+				<p class="search">Sorry chief, no results for <strong>{SearchQuery}</strong>. Try it as a <a href="/tagged/{URLSafeSearchQuery}">tag</a>?</p>
+				<script type="text/javascript">$("#searchresults").hide();</script>
+			</div>
+			{/block:NoSearchResults}
+		{block:Posts}
+			{block:PermalinkPage}
+			<div class="pagetype">
+				<p class="date">Posted on <strong><a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/">{DayOfWeek}, {DayOfMonth} {Month} {Year}</a></strong></p>
+			</div>
+			{/block:PermalinkPage}
+			{block:Photo}
+			<div class="post">
+				<div class="photo">
+					{LinkOpenTag}<img src="{PhotoURL-400}" border="0" alt="{PhotoAlt}" />{LinkCloseTag}
+					{block:Caption}
+					<div class="content">
+						{Caption}
+					</div>
+					{/block:Caption}
+			{/block:Photo}
+			{block:Photoset}
+			<div class="post">
+				<div class="photo">
+					<div class="embed">{Photoset-400}</div>
+					{block:Caption}
+					<div class="content">
+						{Caption}
+					</div>
+					{/block:Caption}
+			{/block:Photoset}
+			{block:Video}
+			<div class="post">
+				<div class="video">
+					<div class="embed">
+						{Video-400}
+					</div>
+					{block:Caption}
+					<div class="content">
+						{Caption}
+					</div>
+					{/block:Caption}
+			{/block:Video}
+			{block:Quote}
+			<div class="post">
+				<div class="quote">
+					<div class="icon">
+						<div class="{Length}">
+							<blockquote class="quote">
+								<p>{Quote}</p>
+							</blockquote>
+						</div>
+					</div>
+					{block:Source}
+					<div class="content">
+						<p>{Source}</p>
+					</div>
+					{/block:Source}
+			{/block:Quote}
+			{block:Answer}
+			<div class="post">
+				<div class="quote">
+					<div class="icon">
+						<div class="long">
+							<blockquote class="quote">
+								<p>{Question}</p>
+							</blockquote>
+						</div>
+					</div>
+					<div class="content">
+						<p><em>Asked by {Asker}</em></p>
+						<p>{Answer}</p>
+					</div>
+			{/block:Answer}
+			{block:Chat}
+			<div class="post">
+				<div class="chat">
+					{block:Title}
+					<h2>{Title}</h2>
+					{/block:Title}
+					<ul class="transcript">
+						{block:Lines}
+						<li>
+							{block:Label}<strong class="label">{Label}</strong>{/block:Label}
+							{Line}
+						</li>
+						{/block:Lines}
+					</ul>
+			{/block:Chat}
+			{block:Audio}
+			<div class="post">
+				<div class="audio">
+					{block:Caption}
+					<div class="content">
+					        <div class="trackDetails">
+					                {block:AlbumArt}
+        						<div class="album">
+        							<img src="{AlbumArtURL}" width="70" height="70" border="0" alt="{block:TrackName}{TrackName}{/block:TrackName}{block:Artist} by {Artist}{/block:Artist}{block:Album} from {Album}{/block:Album}" />
+        						</div>
+        						{/block:AlbumArt}
+        						<h2>{block:TrackName}{TrackName}{/block:TrackName}</h2>
+        						<p>by <strong>{block:Artist}{Artist}{/block:Artist}</strong><br />
+        						from <strong>{block:Album}{Album}{/block:Album}</strong></p>
+					        </div>
+						<div class="trackText">
+						        {Caption}
+						</div>	
+					</div>
+					{/block:Caption}
+						<div class="embed">
+							<p class="plays">{FormattedPlayCount} Plays{block:ExternalAudio} <a href="{ExternalAudioURL}">Download</a>{/block:ExternalAudio}</p>
+							{AudioPlayerWhite}
+						</div>
+			{/block:Audio}
+			{block:Link}
+			<div class="post">
+				<div class="link {TagsAsClasses}">
+					<h2><a href="{URL}" {Target}>{Name}</a></h2>
+					{block:Description}
+					<div class="content">
+						{Description}
+					</div>
+					{/block:Description}
+			{/block:Link}
+			{block:Text}
+			<div class="post">
+				<div class="text">
+					{block:Title}
+					<h2><a href="{Permalink}">{Title}</a></h2>
+					{/block:Title}
+					<div class="content">
+						{Body}
+						{block:More}<p><a href="{Permalink}"><em>Continue reading&hellip;</em></a></p>{/block:More}
+					</div>
+			{/block:Text}
+					<div class="meta">
+						<p class="permalink">
+							<a href="{Permalink}" title="Permalink for this post" class="permalink" rel="permalink">{TimeAgo}</a>
+							{block:IfShowShortURLs}<a href="{ShortURL}" title="Short URL for this post" class="shorturl">Short URL</a>{/block:IfShowShortURLs}
+							{block:NoteCount}<a href="{Permalink}#notes" class="notes-button" title="View notes for this post">{NoteCountWithLabel}</a>{/block:NoteCount}
+							{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="dsq-comment-count" title="View comments for this post"></a>{/block:IfDisqusShortname}
+						</p>
+
+						{block:PostNotes}
+						<div class="notes-container" id="notes">
+							{PostNotes}
+						</div>
+						{block:PostNotes}
+
+						{block:HasTags}
+						<ul class="tags">
+							{block:Tags}
+							<li><a href="{TagURL}" rel="tag">{Tag}</a></li>
+							{/block:Tags}
+						</ul>
+						{/block:HasTags}
+						
+						{block:IfDisqusShortname}
+						<div class="disqus_block">
+						<script type="text/javascript">
+						// <![CDATA[
+							var disqus_url = "{Permalink}";
+							var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";
+						// ]]>
+						</script>
+						{block:PermalinkPage}
+						<div id="disqus_thread"></div>
+						<script type="text/javascript" src="http://disqus.com/forums/{text:Disqus shortname}/embed.js"></script>
+						<noscript><a href="http://disqus.com/forums/{text:Disqus shortname}/?url=ref">View the discussion thread.</a></noscript>
+						{/block:PermalinkPage}
+						<script type="text/javascript">
+						// <![CDATA[
+							(function() {
+								var links = document.getElementsByTagName('a');
+								var query = '?';
+								for(var i = 0; i < links.length; i++) {
+									if(links[i].href.indexOf('#disqus_thread') >= 0) {
+										query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+									}
+								}
+								document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus shortname}/get_num_replies.js' + query + '"></' + 'script>');
+							})();
+						// ]]>
+						</script>
+						</div>
+						{/block:IfDisqusShortname}
+					</div>
+				</div>
+			</div>
+		{/block:Posts}
+		</div>  		 	
+		<div id="side">
+			{block:SearchForm}
+			<form action="/search" method="get" id="search">
+				<fieldset>
+			    	<input type="text" name="q" id="search_field" value=""/>
+			    	<input type="submit" id="search_button" value="Search"/>
+				</fieldset>
+			</form>
+			{/block:SearchForm}
+			<div id="chrisheader">{block:Description}<p>{Description}</p>{/block:Description}</div>
+			{block:IfShowSocialLinks}
+			<div class="panel">
+				<h2>{text:Social panel title}</h2>
+				<ul class="columns">
+					{block:IfSocialLink1}{block:IfSocialName1}<li><a href="{text:Social link 1}" rel="me"><span>{text:Social name 1}</span></a></li>{/block:IfSocialName1}{/block:IfSocialLink1}
+					{block:IfSocialLink2}{block:IfSocialName2}<li><a href="{text:Social link 2}" rel="me"><span>{text:Social name 2}</span></a></li>{/block:IfSocialName2}{/block:IfSocialLink2}
+					{block:IfSocialLink3}{block:IfSocialName3}<li><a href="{text:Social link 3}" rel="me"><span>{text:Social name 3}</span></a></li>{/block:IfSocialName3}{/block:IfSocialLink3}
+					{block:IfSocialLink4}{block:IfSocialName4}<li><a href="{text:Social link 4}" rel="me"><span>{text:Social name 4}</span></a></li>{/block:IfSocialName4}{/block:IfSocialLink4}
+					{block:IfSocialLink5}{block:IfSocialName5}<li><a href="{text:Social link 5}" rel="me"><span>{text:Social name 5}</span></a></li>{/block:IfSocialName5}{/block:IfSocialLink5}
+					{block:IfSocialLink6}{block:IfSocialName6}<li><a href="{text:Social link 6}" rel="me"><span>{text:Social name 6}</span></a></li>{/block:IfSocialName6}{/block:IfSocialLink6}
+				</ul>
+			</div>
+			{/block:IfShowSocialLinks}
+			{block:IndexPage}
+			{block:IfShowBlogsIFollow}
+			{block:Following}
+			<div class="panel">
+				<h2>{text:Following panel title}</h2>
+				<div id="followed-mask">
+					<ul class="followed">
+						{block:Followed}
+						<li><a href="{FollowedURL}" rel="friend">{FollowedTitle}</a></li>
+						{/block:Followed}
+					</ul>
+				</div>
+			</div>
+			{/block:Following}
+			{/block:IfShowBlogsIFollow}
+			{block:IfShowFavoriteAlbums}
+			<div class="panel">
+				<h2>{text:Albums panel title}</h2>
+				<!-- Album overlays by Komodo Media, Rogie King http://komodomedia.com -->
+				<ul class="albums">
+					{block:IfAlbum1Image}<li><img src="{image:Album 1}" width="70" height="70" border="0" alt="{text:Album name 1}" /></li>{/block:IfAlbum1Image}
+					{block:IfAlbum2Image}<li><img src="{image:Album 2}" width="70" height="70" border="0" alt="{text:Album name 2}" /></li>{/block:IfAlbum2Image}
+					{block:IfAlbum3Image}<li><img src="{image:Album 3}" width="70" height="70" border="0" alt="{text:Album name 3}" /></li>{/block:IfAlbum3Image}
+					{block:IfAlbum4Image}<li><img src="{image:Album 4}" width="70" height="70" border="0" alt="{text:Album name 4}" /></li>{/block:IfAlbum4Image}
+				</ul>
+				<map name="albumlinks" id="albumlinks">
+					{block:IfAlbum1Image}<area shape="rect" coords="4,2,82,72"     href="{text:Album link 1}" title="{text:Album name 1}" alt="" />{/block:IfAlbum1Image}
+					{block:IfAlbum2Image}<area shape="rect" coords="86,2,164,72"   href="{text:Album link 2}" title="{text:Album name 2}" alt="" />{/block:IfAlbum2Image}
+					{block:IfAlbum3Image}<area shape="rect" coords="4,78,82,148"   href="{text:Album link 3}" title="{text:Album name 3}" alt="" />{/block:IfAlbum3Image}
+					{block:IfAlbum4Image}<area shape="rect" coords="86,78,164,148" href="{text:Album link 4}" title="{text:Album name 4}" alt="" />{/block:IfAlbum4Image}
+				</map>
+			</div>
+			{/block:IfShowFavoriteAlbums}
+			{block:IfFlickrNumericId}
+			<div class="panel">
+				<h2>{text:Flickr panel title}</h2>
+				<ul id="flickrfeed"></ul>
+			</div>
+			{/block:IfFlickrNumericId}
+			{/block:IndexPage}
+		</div>
+		<div id="footer">
+			<ul class="links">
+				<li class="tumblr"><a href="http://www.tumblr.com">Runs on Tumblr</a></li>
+				<li class="archive"><a href="/archive">Archive</a></li>
+				{block:IfShowiPhoneLink}<li class="iphone"><a href="http://tumblephone.com/{Name}">iPhone</a></li>{/block:IfShowiPhoneLink}
+				<li class="mobile"><a href="/mobile">Mobile</a></li>
+				<li class="feed"><a href="{RSS}">Feed</a></li>
+			</ul>
+			{block:Pagination}
+			<p class="pages">
+				{block:NextPage}<a href="{NextPage}">{/block:NextPage}<span class="mute">&larr;</span> Past{block:NextPage}</a>{/block:NextPage}
+				<span class="divider">{block:PreviousPage}<a href="{PreviousPage}">{/block:PreviousPage}Future <span class="mute">&rarr;</span>{block:PreviousPage}</a>{/block:PreviousPage}</span>
+				<span class="pagecount">Page {CurrentPage} of {TotalPages}</span>
+			</p>
+			{/block:Pagination}
+			{block:PermalinkPagination}
+			<p class="pages">
+				{block:PreviousPost}<a href="{PreviousPost}">{/block:PreviousPost}<span class="mute">&larr;</span> Past{block:PreviousPost}</a>{/block:PreviousPost}
+				<span class="divider">{block:NextPost}<a href="{NextPost}">{/block:NextPost}Future <span class="mute">&rarr;</span>{block:NextPost}</a>{/block:NextPost}</span>
+			</p>
+			{/block:PermalinkPagination}
+			{block:DayPagination}
+			<p class="pages">
+				{block:PreviousDayPage}<a href="{PreviousDayPage}">&larr; {DayOfMonth} {ShortMonth}</a>{/block:PreviousDayPage}
+				{block:NextDayPage}{block:PreviousDayPage}<span class="divider">{/block:PreviousDayPage}<a href="{NextDayPage}">{DayOfMonth} {ShortMonth} &rarr;</a>{block:PreviousDayPage}</span>{/block:PreviousDayPage}{/block:NextDayPage}
+			</p>
+			{/block:DayPagination}
+		</div>
+		<p id="fine-print" class="footer">
+			{block:HasPages}
+			{block:Pages}
+			<a href="{URL}">{Label}</a>.
+			{/block:Pages}
+			{/block:HasPages}
+			{block:AskEnabled}<a href="/ask">{AskLabel}</a>.{/block:AskEnabled}
+			{block:SubmissionsEnabled}Make a <a href="/submit">submission</a>.{/block:SubmissionsEnabled}
+		</p>
+	</div>
+
+	<script type="text/javascript">
+	// <![CDATA[
+		Cufon.now();
+	// ]]>
+	</script>
+
+	{block:IfGoogleAnalyticsID}<script type="text/javascript">
+	// <![CDATA[
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+		})();
+	// ]]>
+	</script>{/block:IfGoogleAnalyticsID}
+</body>  		 	
+<!--
+    This Tumblr Theme and all of its CSS, Javascript,
+    and media assets are subject to Tumblr's Terms of Service:
+
+    http://www.tumblr.com/terms_of_service
+-->
+</html>
