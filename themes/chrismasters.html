@@ -179,6 +179,10 @@
 		/*margin-top: 5px;*/
 	}
 	
+	.red {
+	        background-color: #F00;
+	}
+	
     #wrapper {
         width: 960px;
         margin: 0 auto;
@@ -205,35 +209,44 @@
 		padding-bottom: 10px;*/
 		/*border-bottom: 1px solid #ddd;*/
 		/*background-color: #EEE;*/
-		padding-top: 1.125em;
-		border-top: 0.125em solid black;
+		padding-bottom: 1.125em;
+		border-bottom: 0.125em solid black;
 	}
 	
 	sup {
 
 	}
 	
+	.playcount {
+	        /*visibility: hidden;*/
+	}
+	
 	.cover {
 		float: left;
 		padding-right: 20px;
+		display: inline-block;
+		width: 160px;
 	}
 	
-	.audioDetails {
-		float:right;
-		/*width:220px;*/	
-	}
+/*      .audioDetails {
+                float:left;
+                display: inline-block;
+                width:220px;    
+        }*/
 	
-	.player {
-		padding-top: 0.875em;
-		font-size: 0.75em;
-		max-width: 210px;
-	}
+/*      .player {
+                padding-top: 0.875em;
+                font-size: 0.75em;
+                max-width: 210px;
+        }*/
 	
-	.audio_player {
-		border:1px solid black;
-		margin: 0;
-		padding: 0;
-	}
+      .audio_player {
+                /*border:1px solid black;*/
+                margin: 0;
+                padding: 0;
+                font-size: 0.75em;
+                padding-top: 0.875em;
+        }
 	
 	.quote {
 		background: url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/open_quote_large.png) no-repeat scroll 0 3px;
@@ -289,7 +302,7 @@
                 }
             }
 
-            $('img, pre, object, .player').each(function() {
+            $('img, pre, object, .audio_player').each(function() {
                 /* Only works if we're manipulating block objects */
                 if ($(this).css('display') == 'inline')
                 {
@@ -343,9 +356,9 @@
 						{block:Date}
 						<p class="date">{DayOfMonth}<sup>th</sup> {Month} {Year}</p>
 						{/block:Date}
-						<p class="post-meta"><a href="{shortURL}">{Permalink}</a></p>
+						<p class="shortURL post-meta"><a href="{shortURL}">{Permalink}</a></p>
 						{block:NoteCount}
-						<p class="post-meta"><a href="{Permalink}"><strong>{NoteCountWithLabel}</strong></a></p>
+						<p class="notecount post-meta"><a href="{Permalink}"><strong>{NoteCountWithLabel}</strong></a></p>
 						{/block:NoteCount}
 						{block:HasTags}
 						<ul class="tags clearfix">
@@ -376,34 +389,43 @@
                     
                     {block:Audio}                        
                         <div class="audio {TagsAsClasses}">
-						
-						<div class="audioInfo clearfix">
-							<div class="audioDetails">
-								{block:TrackName}
-									<h2>{TrackName}</h2>
-								{/block:TrackName}
-								{block:Artist}
-									<p><em>by</em> {Artist}</p>
-								{/block:Artist}
-								{block:Album}
-									<p>from the album {Album}</p>
-								{/block:Album}
-								<div class="player">{AudioPlayerWhite}</div>
-	                            <p><strong>{FormattedPlayCount}</strong> plays</p>
-							</div>
-							{block:AlbumArt}
-                                <div class="cover"><img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" width="160" height="160"/></div>
-                            {/block:AlbumArt}
-						</div>
-								
-							
+			
+				<div class="audioInfo clearfix">
+				        <script type="text/javascript">
+				                
+				                
+				                $(".audio").prev().(".noteCount").prepend("<strong>{PlayCountWithLabel}</strong>");
+                                               // $(".audio").prev().children(".notecount").before('<strong>yeah</strong> / ');
+                                               // alert(hasNotes);
+                                               //                                              if ($(hasNotes).length != 0)
+                                               //                                                      {
+                                               //                                                          $(hasNotes).after("<strong>WOAH</strong>");
+                                               //                                                      }
+                                               //                                                      else
+                                               //                                                      {
+                                               //                                                          $(hasNotes).parent().addClass("red");
+                                               //                                                      }
+                                             
 
-							{block:Caption}
-								<div class="copy">{Caption}</div>
-							{/block:Caption}
-							{block:ExternalAudio}
-								<a href="{ExternalAudioURL}">download link</a>
-							{/block:ExternalAudio}
+                                        </script>
+				        <div class="cover">
+        				        {block:AlbumArt}
+                                                <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" width="160" height="160"/>
+                                                {/block:AlbumArt}				            
+				        </div>
+
+					<div>
+					        {block:TrackName}<h2>{TrackName}</h2>{/block:TrackName}
+                				{block:Artist}<p>by {Artist}</p>{/block:Artist}
+                				{block:Album}<p>from the album {Album}</p>{/block:Album}
+                				{AudioPlayerWhite}
+					</div>		
+        				
+	                        </div>
+				{block:Caption}
+				<div class="copy">{Caption}</div>
+				{/block:Caption}
+				{block:ExternalAudio}<a href="{ExternalAudioURL}">download link</a>{/block:ExternalAudio}
 
                         </div>                    
                     {/block:Audio}

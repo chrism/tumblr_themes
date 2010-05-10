@@ -157,6 +157,24 @@ Posts:
     Artist: Allison Weiss
     TrackName: Fingers Crossed Longer Title
     AudioFile: "http://www.tumblr.com/audio_file/459260683/tumblr_ksc4i2SkVU1qz8ouq"
+  - Type: Audio
+    Timestamp: 1162998380
+    Permalink: http://sample.tumblr.com/post/123
+    PostId: 459298683
+    Reblog:
+      ReblogParentName: allisonweiss
+      ReblogParentTitle: A DAY IN THE LIFE OF ALLISON WEISS
+      ReblogParentURL: http://allisonweiss.tumblr.com/
+    # Root:
+    #   ReblogRootName: staff
+    #   ReblogRootTitle: Tumblr Staff
+    #   ReblogRootURL: http://staff.tumblr.com/
+    Caption: '<p><strong><a href="#" title="http://allisonweiss.tumblr.com/">Allison Weiss</a> —</strong> Fingers Crossed</p>'
+    PlayCount: 986
+    AlbumArtURL: http://16.media.tumblr.com/tumblr_ksc4i2SkVU1qz8ouqo1_r2_cover.jpg
+    Artist: Allison Weiss
+    TrackName: Fingers Crossed Even Longer Title
+    AudioFile: "http://www.tumblr.com/audio_file/459260683/tumblr_ksc4i2SkVU1qz8ouq"
   - Type: Text
     Permalink: http://sample.tumblr.com/post/123
     PostId: 232
