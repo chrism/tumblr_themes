@@ -16,10 +16,11 @@
     <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, san-serif" />
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{Title}</title>
+    <title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
     {block:Description}
 	<meta name="description" content="{MetaDescription}" />
 	{/block:Description}
+	<meta name="keywords" content="{block:Permalink}{block:Posts}{block:Tags}{Tag}, {/block:Tags}{/block:Posts}{/block:Permalink}" /> 
 	
     <link rel="icon" href="http://static.tumblr.com/pakkylg/7Xll20gam/favicon.ico" />
     <link rel="alternate" type="application/rss+xml" href="{RSS}" />
@@ -87,6 +88,7 @@
 	
 	p {
 		font-size: 0.875em; /* 16x0.875=14px */		
+		margin-bottom: 0.714em;
 	}
 	
 	h2 {
@@ -95,7 +97,6 @@
 		color: #000;
 		/*margin-bottom:0.417em; /* 16x1.5emx0.417em=10px */
 		letter-spacing: -0.05em;
-
 		font-size: 1.813em;
 		line-height: 1.034em;
 		margin-bottom: 0.345em;
@@ -120,19 +121,37 @@
 		font-size: 0.875em; /* 16x0.875=14px */
 		line-height: 1.286em; /* base 14px x 1.286 = target 18px (20px - 2px) */
 		color: #aaa;
+		margin-bottom: 0;
 	}
 	
 	.copy {
 		margin-top: 0.625em;
 	}
 	
-	p.post-meta, .post-meta span {
+	p.post-meta, .post-meta span, .photoset_caption {
 		color: #555;
-		font-size: 0.5em;
+		/*font-size: 0.5em;*/
+		font-size: 0.563em;
+		line-height: 2.222em;
+		margin-bottom: 0;
 		word-wrap: break-word; /* Internet Explorer 5.5+ */
 		white-space: normal; /* Firefox */
+		
 	}
-	
+
+p.artist, p.album {
+   margin-bottom: 0;
+}
+
+.html_photoset p {
+   margin-bottom: 0;
+}
+
+ .photoset_caption {
+      padding-bottom: 1.111em;
+      display: none;
+   }
+   
 	strong {
 		font-weight: bold;
 	}
@@ -150,6 +169,10 @@
 	a:hover {
 		border-bottom: 1px solid #000;
 		color: #000;
+	}
+	
+	a img,a:hover img {
+	   border:none;
 	}
 	
 
@@ -192,6 +215,7 @@
         width: 960px;
         margin: 0 auto;
 		/*background: #fff url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/16_col_10px.gif) repeat scroll 0 4px;*/
+		background: #fff url(http://static.tumblr.com/pakkylg/gUhl29kjy/16_col_10px.gif) repeat scroll 0 4px;
     }
 
 	#content {
@@ -204,12 +228,19 @@
 		padding:0 80px 0 10px;
 		text-align: right;
 	}
+	.post {
+		margin-top: 2.5em; /* 16x2.5=40px */
+	}
 	
-	.photo, .video, .audio, .quote, .text, .link {
+	.photo, .photoset_container, .video, .audio, .quote, .text, .link {
 		float:left;
 		width:400px;
-		padding-bottom: 1.125em;
-		border-bottom: 0.125em solid black;
+		/*padding-bottom: 1.125em;*/
+		/*border-bottom: 0.125em solid #ccc;*/
+	}
+	
+	.photo img, .audio img, .html_photoset p:first-child, .media object {
+		padding-top: 0.25em;
 	}
 	
 	sup {
@@ -245,16 +276,10 @@
         }
 	
 	.quote {
-		background: url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/open_quote_large.png) no-repeat scroll 0 3px;
+		/*background: url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/open_quote_large.png) no-repeat scroll 0 3px;*/
+		background: url(http://static.tumblr.com/pakkylg/xanl29kl5/open_quote_large.png) no-repeat scroll 0 3px;
 	}
 	
-	.photo img, .audio img {
-		padding-top: 0.25em;
-	}
-	
-	.post {
-		margin-top: 1.25em; /* 16x1.25=20px */
-	}
 	
 	/* new clearfix */
 	.clearfix:after {
@@ -298,7 +323,7 @@
                 }
             }
 
-            $('img, pre, object, .audio_player').each(function() {
+            $('.audioInfo, .media, pre, .audio_player, .html_photoset').each(function() {
                 /* Only works if we're manipulating block objects */
                 if ($(this).css('display') == 'inline')
                 {
@@ -306,7 +331,7 @@
                 }
 
                 /* Images need to load before you get their height */
-                if ($(this).is('img'))
+                if ($(this).is('img') || $(this).is('.html_photoset'))
                 {
                     $(this).load(function(){ balanceHeight(this); });
                 }
@@ -382,12 +407,24 @@
                     
                     {block:Photo}
 						<div class="photo {TagsAsClasses}">
-							<div class="media">{LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}" />{LinkCloseTag}</div>
+							<div class="media"><p>{LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}" />{LinkCloseTag}</p></div>
 	                        {block:Caption}
 								<div class="copy">{Caption}</div>
 							{/block:Caption}
 						</div>
                     {/block:Photo}
+                    
+                     {block:Photoset}
+  						<div class="photoset_container {TagsAsClasses}">
+  						   <div style="display:none">
+  						    {Photoset-400}
+  						   </div>
+  							{Photoset-400}
+  	                        {block:Caption}
+  								<div class="copy">{Caption}</div>
+  							{/block:Caption}
+  						</div>
+                     {/block:Photoset}
                     
                     {block:Video}
 						<div class="video {TagsAsClasses}">
@@ -411,9 +448,9 @@
 
 						<div>
 					        {block:TrackName}<h3>{TrackName}</h3>{/block:TrackName}
-                				{block:Artist}<p>by {Artist}</p>{/block:Artist}
-                				{block:Album}<p>from the album {Album}</p>{/block:Album}
-                				<span class="post-meta">{AudioPlayerWhite}</span>
+                				{block:Artist}<p class="artist">by <strong>{Artist}</strong></p>{/block:Artist}
+                				{block:Album}<p class="album">from <strong>{Album}</strong></p>{/block:Album}
+                				<span class="post-meta">{AudioPlayerGrey}</span>
 								<p class="playcount post-meta"><strong>{PlayCountWithLabel}</strong></p>
 							</div>		
         				
@@ -430,7 +467,7 @@
                         <div class="quote {TagsAsClasses}">
 							<h2>{Quote}</h2>
                             {block:Source}
-								<div class="copy"><p>{Source}</p></div>
+								<div class="copy">{Source}</div>
 							{/block:Source}
 						</div>
                     {/block:Quote}
@@ -448,7 +485,7 @@
                         <div class="link {TagsAsClasses}">
 							<h2>{Name} <a href="{URL}" {Target}>&raquo;</a></h2>
                         	{block:Description}
-								<div class="copy"><p>{Description}</p></div>
+								<div class="copy">{Description}</div>
 							{/block:Description}
 						</div>
                     {/block:Link}                    
