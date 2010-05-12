@@ -1,4 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
 <!--
     
         .                                  .o8       oooo               
@@ -84,11 +86,13 @@
 		font-size:100%; /* font size is base 16px */
 		line-height:1.25em; /* 16x1.25=20px */
 		font-family: {font:Body};
+		background-image: url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/paper_texture_300_4.jpg);
 	}
 	
 	p {
 		font-size: 0.875em; /* 16x0.875=14px */		
 		margin-bottom: 0.714em;
+		text-shadow: rgb(255, 255, 255) 0px 1px 1px;
 	}
 	
 	h2 {
@@ -100,6 +104,7 @@
 		font-size: 1.813em;
 		line-height: 1.034em;
 		margin-bottom: 0.345em;
+		text-shadow: rgb(255, 255, 255) 0px 1px 1px;
 	}
 	
 	h2 p {
@@ -122,6 +127,7 @@
 		line-height: 1.286em; /* base 14px x 1.286 = target 18px (20px - 2px) */
 		color: #aaa;
 		margin-bottom: 0;
+		font-weight: bold;
 	}
 	
 	.copy {
@@ -215,7 +221,7 @@ p.artist, p.album {
         width: 960px;
         margin: 0 auto;
 		/*background: #fff url(http://localhost/~chrismasters/thimble/themes/chrismasters_assets/16_col_10px.gif) repeat scroll 0 4px;*/
-		background: #fff url(http://static.tumblr.com/pakkylg/gUhl29kjy/16_col_10px.gif) repeat scroll 0 4px;
+		background: url(http://static.tumblr.com/pakkylg/gUhl29kjy/16_col_10px.gif) repeat scroll 0 4px;
     }
 
 	#content {
@@ -229,7 +235,7 @@ p.artist, p.album {
 		text-align: right;
 	}
 	.post {
-		margin-top: 2.5em; /* 16x2.5=40px */
+		margin-top: 50px;
 	}
 	
 	.photo, .photoset_container, .video, .audio, .quote, .text, .link {
@@ -253,7 +259,10 @@ p.artist, p.album {
 		padding-right: 20px;
 		display: inline-block;
 		width: 160px;
+		margin-bottom: 6px;
+	   
 	}
+
 	
 /*      .audioDetails {
                 float:left;
@@ -323,7 +332,7 @@ p.artist, p.album {
                 }
             }
 
-            $('.audioInfo, .media, pre, .audio_player, .html_photoset').each(function() {
+            $('.photo .media img, .video .media object, pre, .audio_player, .html_photoset').each(function() {
                 /* Only works if we're manipulating block objects */
                 if ($(this).css('display') == 'inline')
                 {
@@ -345,15 +354,14 @@ p.artist, p.album {
 			$('.audio').each(function() {
 				var playContent = $(this).find('.playcount').html();
 				$(this).find('.playcount').hide();
-                /* Only works if we're manipulating block objects */
+                /* check to see if it has notes */
                 if ($(this).prev().children(".notecount").length != 0)
                 {
                     $(this).prev().children(".notecount").children('a').before(playContent + ' / ');
-					$(this).find('.playcount').addClass("red");
                 } else
-				{
-					$(this).prev().children(".shortURL").after('<p class="notecount post-meta">' + playContent + '</p>');
-				}
+				    {
+					    $(this).prev().children(".shortURL").after('<p class="notecount post-meta">' + playContent + '</p>');
+				    }
             });
         });
     </script>
@@ -387,7 +395,7 @@ p.artist, p.album {
             {/block:NoSearchResults}
             
             {block:Posts}            
-                <div class="post clearfix">
+            <div class="post clearfix">
 					<div class="sideInfo">
 						{block:Date}
 						<p class="date">{DayOfMonth}<sup>{DayOfMonthSuffix}</sup> {Month} {Year}</p>
@@ -407,7 +415,7 @@ p.artist, p.album {
                     
                     {block:Photo}
 						<div class="photo {TagsAsClasses}">
-							<div class="media"><p>{LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}" />{LinkCloseTag}</p></div>
+							<div class="media">{LinkOpenTag}<img src="{PhotoURL-400}" alt="{PhotoAlt}" />{LinkCloseTag}</div>
 	                        {block:Caption}
 								<div class="copy">{Caption}</div>
 							{/block:Caption}
@@ -498,7 +506,6 @@ p.artist, p.album {
                     {block:NextPage}<a href="{NextPage}">next page &rarr;</a>{/block:NextPage}
                 </div>
             {/block:Pagination}
-            
         </div>
     </div>
 </body>
